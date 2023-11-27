@@ -111,7 +111,7 @@
     <section id="offer" class="bg-info">
       <div class="container p-4">
         <h2 class="text-center text-uppercase">Want an offer?</h2>
-        <form id="offerForm" class="row gy-2 my-3" onsubmit="calculateOffer(event)">
+        <form id="offerForm" class="row gy-2 my-3" onsubmit="previewServ(event)">
           <!-- First name input-->
           <div class="col-sm-6 col-12">
             <label class="form-label" for="first-name">First name</label>
@@ -135,11 +135,11 @@
           <!-- Type of offer-->
           <div class="col-sm-6 col-12">
             <label class="form-label" for="type-of-work">Type of work</label>
-            <select class="form-select" id="type-of-work">
+            <select class="form-select" id="serviceType">
               <option selected>Select the type of work</option>
-              <option value="1">Backend Development</option>
-              <option value="2">Frontend Development</option>
-              <option value="3">Project Analysis</option>
+              <option value="Backend">Backend Development</option>
+              <option value="Frontend">Frontend Development</option>
+              <option value="Projectanalysis">Project Analysis</option>
             </select>
           </div>
           <!-- Discount Code-->
