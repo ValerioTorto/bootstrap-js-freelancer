@@ -7,16 +7,17 @@ let codesDis = [
     "SJDPO96",
     "POCIE24"
 ];
-let i = 0;
 
-let discount = false;
 
-function DiscountedPrice(putDiscount) {
-    for (i = 0; i < codesDis.length; i++){
-        if (putDiscount == codesDis[i]);
-        discount = true;
-        break;
-    };
+function isDiscountCodeValid(discountCode) {
+    let discount = false;
+    
+    for(let i = 0; i < codesDis.length; i++){
+        if (discountCode == codesDis[i]){
+            discount = true;
+        }
+    }
+
     return discount;
 }
 
@@ -27,49 +28,27 @@ function previewServ(event) {
     let serviceType = document.getElementById("serviceType");
     let serviceOpt = serviceType.options[serviceType.selectedIndex].value;
     let price = 0;
-    let putDiscount=document.getElementById("discount-code").value;
-    let discount = DiscountedPrice(putDiscount);
+    let DiscountCode = document.getElementById("discount-code").value;
+    let foundDiscountCode = isDiscountCodeValid(DiscountCode);
 
-    let hoursRequ = document.getElementById("hours").value;
-    parseInt(hoursRequ);
-     if (discount){
-        if(serviceOpt == "Backend") {
-        price = hoursRequ * 20.50;
-        price = price * 0.75;
-        price = price.toFixed(2);
-        console.log(price);
-     }
-     else if (serviceOpt == "Frontend") {
-        price = hoursRequ * 15.30;
-        price = price * 0.75;
-        price = price.toFixed(2);
-        console.log(price)
-     }
-     else if (serviceOpt == "Projectanalysis") {
-        price = hoursRequ * 33.60;
-        price = price * 0.75;
-        price = price.toFixed(2);
-        console.log(price)
-     }
+    let hoursRequested = document.getElementById("hours").value;
+    hoursRequested = parseInt(hoursRequested);
+
+    if(serviceOpt == "Backend") {
+        price = hoursRequested * 20.50;
+    } else if (serviceOpt == "Frontend") {
+        price = hoursRequested * 15.30;
+    } else if (serviceOpt == "Projectanalysis") {
+        price = hoursRequested * 33.60;
     }
 
-    else{
-        alert("Attenzione codice sconto non valido!");
-
-        if (serviceOpt == "Backend") {
-            price = hoursRequ * 20.50;
-            price = price.toFixed(2);
-            console.log(price);
-        }
-        else if (serviceOpt == "Frontend") {
-            price = hoursRequ * 15.30;
-            price = price.toFixed(2);
-            console.log(price);
-        }
-        else if (serviceOpt == "Projectanalysis") {
-            price = hoursRequ * 33.60;
-            price = price.toFixed(2);
-            console.log(price);
-        }
+    if(foundDiscountCode){
+        price = price * 0.75;
+        alert("Codice sconto applicato!");
+    } else {
+        alert("Codice sconto non trovato!");
     }
+
+    console.log(price + "€");
+
 }
